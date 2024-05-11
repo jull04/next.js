@@ -12,7 +12,6 @@ export async function getServerSideProps(context) {
   };
 }
 
-
 export default function Cat({ cat }) {
     const goBack = () => {
     window.history.back();
@@ -24,11 +23,11 @@ export default function Cat({ cat }) {
       <div className="catCard">
       <img src={cat.url} alt="Cat" />
       </div>
-      <p className={styles.catInfoPage}>Breed: {cat.breeds[0].name}</p>
-      <p className={styles.catInfoPage}>Temperament: {cat.breeds[0].temperament}</p>
-      <p className={styles.catInfoPage}>Description: {cat.breeds[0].description}</p>
+      <p className={styles.catInfo}>Breed: {cat.breeds[0].name}</p>
+      <p className={styles.catInfo}>Temperament: {cat.breeds[0].temperament}</p>
+      <p className={styles.catInfo}>Description: {cat.breeds[0].description}</p>
       {cat.breeds[0].vcahospitals_url && (
-        <p className={styles.catInfoPage}>
+        <p className={styles.catInfo}>
           Info link:{" "}
           <a
             className={styles.catLink}

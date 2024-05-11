@@ -6,31 +6,36 @@ import Preloader from "../components/Preloader";
 import "swiper/css";
 import "swiper/css/navigation";
 import styles from '../styles/index.module.css';
+import { useFetchCatImagesQuery } from "../utils/api";
+import { useEffect } from "react";
 
-export async function getStaticProps(context) {
-  const response = await fetch(
-    "https://api.thecatapi.com/v1/images/search?limit=200&api_key=live_8VHZC6qqrZx16wU609ocvPSn0JZTcz3s0MQn1JK6fbeaQw7oy30jNYH6iRlFkmWD"
-  );
-  const cats = await response.json();
+const Index = () => {
 
-  return {
-    props: { cats },
-  };
-}
+  const { data: catImages = [], error, isLoading } = useFetchCatImagesQuery();
 
-const Index = ({ cats }) => {
-  const filteredCats = cats.filter(
+  const filteredCats = catImages.filter(
     (cat) => cat.breeds && cat.breeds.length > 0
   );
+
+  useEffect(() => {
+    if (!isLoading && !error && catImages.length > 0) {
+      // Проверяем, есть ли уже данные в локальном хранилище
+      const storedCatImages = JSON.parse(localStorage.getItem('catImages'));
+      if (!storedCatImages) {
+        // Если данных в локальном хранилище нет, сохраняем полученные данные
+        localStorage.setItem('catImages', JSON.stringify(catImages));
+      }
+    }
+  }, [isLoading, error, catImages]);
 
   return (
     <>
       <MainContainer>
-        <section className={styles.index}>
+        <section>
             <div>
-              <Swiper navigation={true} modules={[Navigation]} className={styles.mySwiper}>
+              <Swiper navigation={true} modules={[Navigation]} className={styles.swiper}>
                 {filteredCats.map((cat) => (
-                  <SwiperSlide key={cat.id}>
+                  <SwiperSlide key={cat.id} className={styles.swiperSlide}>
                     <div>
                       <img
                         src={cat.url}
@@ -42,7 +47,7 @@ const Index = ({ cats }) => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className="container">
+              <div className={styles.buttonContainer}>
                 <Link href={"/cats"} className="button">
                   See all cats
                 </Link>

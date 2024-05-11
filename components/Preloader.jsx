@@ -2,12 +2,10 @@ import styles from '../styles/Preloader.module.css';
 
 function Preloader() {
   return (
-    <div className={styles.container}>
-    <div className="preloader">
-      <div className="preloader__container">
-        <span className="preloader__round"></span>
+    <div className={styles.preloader}>
+      <div className={styles.preloader__container}>
+        <span className={styles.preloader__round}></span>
       </div>
-    </div>
     </div>
   );
 }
