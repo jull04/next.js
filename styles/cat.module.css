@@ -1,0 +1,23 @@
+.catPage {
+  margin: 70px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cat-card {
+  margin: 10px auto;
+}
+
+.catInfoPage {
+  color: #1e88e5;
+  text-decoration: none;
+  width: 40%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.catLink {
+  color: #1e88e5;
+  text-decoration: none;
+}
