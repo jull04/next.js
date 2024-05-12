@@ -1,1 +1,1 @@
-{"/cats":"pages/cats.html","/cats/[id]":"pages/cats/[id].html","/":"pages/index.html","/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/404":"pages/404.html"}
+{"/cats":"pages/cats.html","/":"pages/index.html","/cats/[id]":"pages/cats/[id].html","/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/404":"pages/404.html"}
