@@ -5,7 +5,7 @@ import { store } from "../redux/store";
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      return <Component {...pageProps} />
+      <Component {...pageProps} />
     </Provider>
   );
 }
