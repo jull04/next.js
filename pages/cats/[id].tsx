@@ -8,10 +8,15 @@ export default function Cat() {
 
   const { data: catImages = [] } = useFetchCatImagesQuery(undefined);
 
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams() || {};
 
     // Находим карточку по идентификатору
     const cat: CatImage = (catImages as CatImage[]).find((cat) => cat.id === id)!;
+
+    // Проверка наличия id перед его использованием
+    if (!id) {
+      return <div>No id provided</div>;
+    }
 
     const goBack = () => {
     window.history.back();

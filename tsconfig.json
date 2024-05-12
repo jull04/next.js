@@ -12,6 +12,9 @@
     "jsx": "preserve",
     "incremental": true,
     "moduleResolution": "node",
+    "paths": {
+      "swiper": ["node_modules/swiper"]
+    },
     "plugins": [
       {
         "name": "next"
@@ -19,7 +22,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "swiper": ["node_modules/swiper"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
