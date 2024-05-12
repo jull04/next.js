@@ -1,6 +1,9 @@
+.mainPage {
+  margin: 70px;
+}
+
 .swiper {
   height: 100%;
-  margin: 70px;
 }
 
 .swiperSlide {

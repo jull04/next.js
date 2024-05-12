@@ -5,7 +5,7 @@ const api_key = "live_8VHZC6qqrZx16wU609ocvPSn0JZTcz3s0MQn1JK6fbeaQw7oy30jNYH6iR
 export const catApi = createApi({
   reducerPath: 'catApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.thecatapi.com/v1/' }),
-  endpoints: (builder) => ({
+  endpoints: (builder: any) => ({
     fetchCatImages: builder.query({
       query: () => ({
         url: 'images/search?limit=100',
@@ -15,6 +15,6 @@ export const catApi = createApi({
       }),
     }),
   }),
-});
+})
 
 export const { useFetchCatImagesQuery } = catApi;

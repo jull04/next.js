@@ -1,18 +1,18 @@
+import { useParams } from "next/navigation";
 import MainContainer from "../../components/MainContainer";
-import styles from '../../styles/cat.module.css';
+import styles from '../../styles/Cat.module.css';
+import { useFetchCatImagesQuery} from "../../utils/api";
+import { CatImage } from "../../utils/types";
 
+export default function Cat() {
 
-export async function getServerSideProps(context) {
-  const { id } = context.params; // Получаем идентификатор котика из параметров маршрута
-  const response = await fetch(`https://api.thecatapi.com/v1/images/${id}?api_key=live_8VHZC6qqrZx16wU609ocvPSn0JZTcz3s0MQn1JK6fbeaQw7oy30jNYH6iRlFkmWD`);
-  const cat = await response.json();
+  const { data: catImages = [] } = useFetchCatImagesQuery(undefined);
 
-  return {
-    props: { cat },
-  };
-}
+  const { id } = useParams<{ id: string }>();
 
-export default function Cat({ cat }) {
+    // Находим карточку по идентификатору
+    const cat: CatImage = (catImages as CatImage[]).find((cat) => cat.id === id)!;
+
     const goBack = () => {
     window.history.back();
   };
@@ -21,7 +21,7 @@ export default function Cat({ cat }) {
     <MainContainer>
     <section className={styles.catPage}>
       <div className="catCard">
-      <img src={cat.url} alt="Cat" />
+        <img src={cat.url} alt="Cat" />
       </div>
       <p className={styles.catInfo}>Breed: {cat.breeds[0].name}</p>
       <p className={styles.catInfo}>Temperament: {cat.breeds[0].temperament}</p>
